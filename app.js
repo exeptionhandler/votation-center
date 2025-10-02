@@ -242,7 +242,7 @@ async function initializeFirebaseApp() {
                 database = window.firebase.getDatabase(app);
                 
                 // Test connection with timeout
-                const testPromise = window.firebase.get(window.firebase.ref(database, '.info/connected'));
+                const testPromise = firebase.database().ref('.info/connected').once('value');
                 const timeoutPromise = new Promise((_, reject) => 
                     setTimeout(() => reject(new Error('Connection timeout')), 5000)
                 );
@@ -349,7 +349,7 @@ async function loadInitialData() {
     try {
         if (useFirebase) {
             // Load from Firebase
-            const snapshot = await window.firebase.get(window.firebase.ref(database, 'votes'));
+            const snapshot = await firebase.database().ref( 'votes');
             if (snapshot.exists()) {
                 const data = snapshot.val();
                 characters.forEach(character => {
@@ -357,7 +357,7 @@ async function loadInitialData() {
                 });
             }
             
-            const totalSnapshot = await window.firebase.get(window.firebase.ref(database, 'totalVotes'));
+            const totalSnapshot = await firebase.database().ref( 'totalVotes');
             totalVotes = totalSnapshot.val() || 0;
         } else {
             // Load from localStorage for persistence in demo mode
@@ -401,7 +401,7 @@ async function checkVotingStatus() {
             // Verify with Firebase
             const promises = characters.map(async (character) => {
                 const votersRef = window.firebase.ref(database, `votes/${character.id}/voters/${deviceId}`);
-                const snapshot = await window.firebase.get(votersRef);
+                const snapshot = await votersRef.once('value');
                 return snapshot.exists();
             });
             
