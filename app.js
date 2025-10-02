@@ -224,7 +224,7 @@ function createConfetti(card) {
     for (let i = 0; i < confettiCount; i++) {
         const confetti = document.createElement('div');
         confetti.className = 'confetti-piece';
-        confetti.style.left = Math.random() * 100 + '%';
+        confetti.style.left = Math.random() * 100 + ' %';
         confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
         confetti.style.animationDelay = Math.random() * 0.3 + 's';
         confetti.style.animationDuration = (Math.random() * 1 + 1.5) + 's';
@@ -310,11 +310,11 @@ function updateResults() {
                 <div class="ranking-item__info">
                     <span class="ranking-item__name">${char.name}</span>
                     <div class="ranking-item__bar">
-                        <div class="ranking-item__fill" style="width: ${percentage}%"></div>
+                        <div class="ranking-item__fill" style="width: ${percentage} %"></div>
                     </div>
                 </div>
                 <div class="ranking-item__stats">
-                    <span class="ranking-item__percentage">${percentage}%</span>
+                    <span class="ranking-item__percentage">${percentage} %</span>
                 </div>
             </div>
         `;
