@@ -1,13 +1,4 @@
-// Firebase Configuration (Demo - replace with your own)
-const firebaseConfig = {
-    apiKey: "demo-api-key",
-    authDomain: "character-voting-demo.firebaseapp.com",
-    databaseURL: "https://character-voting-demo-default-rtdb.firebaseio.com/",
-    projectId: "character-voting-demo",
-    storageBucket: "character-voting-demo.appspot.com",
-    messagingSenderId: "123456789",
-    appId: "1:123456789:web:abcdef123456"
-};
+import { firebaseConfig } from "./firebaseConfig";
 
 // Character data with Firebase structure
 const characters = [
@@ -15,36 +6,36 @@ const characters = [
         id: "pam",
         name: "The hockey player",
         category: "Donations",
-        description: "The iconic plumber hero who has been saving the Mushroom Kingdom for over 35 years.",
-        achievement: "Star of 200+ games across multiple generations",
-        image: "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=400&h=400&fit=crop",
+        description: "The BEST hockey player in the world who gives back to the community.",
+        achievement: "BIG funds raised for charity",
+        image: "https://raw.githubusercontent.com/exeptionhandler/votation-center/refs/heads/main/assets/hockeyplayer.jpg",
         votes: 0
     },
     {
         id: "perez",
         name: "The marathonist",
-        category: "Anime Hero",
-        description: "The determined ninja who rose from village outcast to become the 7th Hokage.",
-        achievement: "United the ninja world and achieved his dream",
-        image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=400&fit=crop",
+        category: "Donations",
+        description: "He took part in a charity marathon.",
+        achievement: "Completed a full marathon for a good cause",
+        image: "https://raw.githubusercontent.com/exeptionhandler/votation-center/refs/heads/main/assets/marathonist.jpg",
         votes: 0
     },
     {
         id: "nicole",
         name: "The raiser",
-        category: "Movie Antihero",
-        description: "The merc with a mouth who broke box office records with R-rated superhero films.",
-        achievement: "Revolutionized superhero movie genre",
-        image: "https://images.unsplash.com/photo-1635805737707-575885ab0820?w=400&h=400&fit=crop",
+        category: "Donations",
+        description: "Here for a good cause, raising funds for those in need.",
+        achievement: "Broke records in charity fundraising",
+        image: "https://raw.githubusercontent.com/exeptionhandler/votation-center/refs/heads/main/assets/charity.jpg",
         votes: 0
     },
     {
         id: "fabio",
         name: "Mr beast",
-        category: "Pokémon Icon",
-        description: "The electric mouse Pokémon who became a global phenomenon and cultural icon.",
-        achievement: "25+ years as the world's most recognizable Pokémon",
-        image: "https://images.unsplash.com/photo-1606041008023-472dfb5e530f?w=400&h=400&fit=crop",
+        category: "Donations",
+        description: "The most generous person on the planet.",
+        achievement: "2025 Philanthropist of the Year, 12,000,000 $ raised IN ONE DAY",
+        image: "https://raw.githubusercontent.com/exeptionhandler/votation-center/refs/heads/main/assets/mr-beast.jpg",
         votes: 0
     }
 ];
