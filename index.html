@@ -1,14 +1,11 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Character Voting Contest - Firebase Edition</title>
+    <title>Character Voting Contest - The Final Word</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <link rel="icon" type="image/png" href="favicon.png">
-    <meta name="description" content="Vote for your favorite character in our real-time voting contest. See live results and rankings!">
 </head>
 <body>
     <div class="container">
@@ -50,10 +47,7 @@
             <h2 class="results-title">
                 <i class="fas fa-chart-bar"></i>
                 Live Results
-                <div class="live-indicator">
-                    <span class="pulse-dot"></span>
-                    LIVE
-                </div>
+                <div class="live-pulse"></div>
             </h2>
             <div class="rankings" id="rankings">
                 <!-- Rankings will be dynamically inserted here -->
@@ -67,35 +61,35 @@
                 <div class="modal__icon">
                     <i class="fas fa-check-circle"></i>
                 </div>
-                <h3 class="modal__title">Vote Recorded!</h3>
+                <h3 class="modal__title">Thank You for Voting!</h3>
                 <p class="modal__message">Your vote has been counted and synced with Firebase. Watch the live results update!</p>
-                <button class="btn btn--primary modal__close" id="modalClose">View Live Results</button>
+                <button class="btn btn--primary" id="closeModalBtn">View Results</button>
             </div>
         </div>
 
         <!-- Already Voted Modal -->
         <div class="modal hidden" id="alreadyVotedModal">
-            <div class="modal__overlay" id="alreadyVotedOverlay"></div>
+            <div class="modal__overlay" id="alreadyVotedModalOverlay"></div>
             <div class="modal__content">
                 <div class="modal__icon modal__icon--warning">
-                    <i class="fas fa-exclamation-circle"></i>
+                    <i class="fas fa-info-circle"></i>
                 </div>
-                <h3 class="modal__title">Already Voted!</h3>
+                <h3 class="modal__title">Already Voted</h3>
                 <p class="modal__message">You've already cast your vote in this contest. Thanks for participating! Watch the live results continue to update.</p>
-                <button class="btn btn--secondary modal__close" id="alreadyVotedClose">View Live Results</button>
+                <button class="btn btn--primary" id="closeAlreadyVotedBtn">View Results</button>
             </div>
         </div>
 
         <!-- Firebase Error Modal -->
         <div class="modal hidden" id="firebaseErrorModal">
-            <div class="modal__overlay" id="firebaseErrorOverlay"></div>
+            <div class="modal__overlay" id="firebaseErrorModalOverlay"></div>
             <div class="modal__content">
                 <div class="modal__icon modal__icon--error">
                     <i class="fas fa-exclamation-triangle"></i>
                 </div>
                 <h3 class="modal__title">Connection Error</h3>
-                <p class="modal__message" id="errorMessage">Unable to connect to Firebase. Please check your internet connection and try again.</p>
-                <button class="btn btn--primary modal__close" id="firebaseErrorClose">Retry</button>
+                <p class="modal__message" id="firebaseErrorMessage">Unable to connect to Firebase. Please check your internet connection and try again.</p>
+                <button class="btn btn--primary" id="closeFirebaseErrorBtn">Close</button>
             </div>
         </div>
 
@@ -104,16 +98,14 @@
 
         <footer class="footer">
             <p>&copy; 2025 Firebase Character Voting Contest. Real-time results powered by Firebase!</p>
-            <div class="firebase-info">
-                <i class="fab fa-google"></i>
+            <div class="firebase-badge">
+                <i class="fas fa-fire"></i>
                 <span>Powered by Firebase Realtime Database</span>
             </div>
         </footer>
     </div>
 
-    <!-- Firebase SDK v9+ -->
-    
-    <!-- Firebase SDK (compat version for direct browser use) -->
+    <!-- Firebase SDK (compat version for direct browser use - NO modules) -->
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
 
