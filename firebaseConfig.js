@@ -1,5 +1,5 @@
 // firebaseConfig.js
-export const firebaseConfig = {
+const firebaseConfig = {
     apiKey: "AIzaSyAGasSDz0fqpEU34b_Gr20F3UlcQWHvAIM",
     authDomain: "character-voting-contest.firebaseapp.com",
     databaseURL: "https://character-voting-contest-default-rtdb.firebaseio.com",

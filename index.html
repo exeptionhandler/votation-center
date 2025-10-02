@@ -112,33 +112,15 @@
     </div>
 
     <!-- Firebase SDK v9+ -->
-    <script type="module">
-        // Import Firebase SDK modules
-        import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js';
-        import { getDatabase, ref, onValue, set, get, push, serverTimestamp, runTransaction, onDisconnect } from 'https://www.gstatic.com/firebasejs/9.23.0/firebase-database.js';
-        
-        // Make Firebase available globally for the main app
-        window.firebase = {
-            initializeApp,
-            getDatabase,
-            ref,
-            onValue,
-            set,
-            get,
-            push,
-            serverTimestamp,
-            runTransaction,
-            onDisconnect
-        };
-        
-        // Signal that Firebase modules are loaded
-        window.firebaseLoaded = true;
-        
-        // Trigger app initialization if it's waiting
-        if (window.initializeApp) {
-            window.initializeApp();
-        }
-    </script>
+    
+    <!-- Firebase SDK (compat version for direct browser use) -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+
+    <!-- Firebase Configuration -->
+    <script src="firebaseConfig.js"></script>
+
+    <!-- Application Logic -->
     <script src="app.js"></script>
 </body>
 </html>

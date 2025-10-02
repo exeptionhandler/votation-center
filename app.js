@@ -1,7 +1,4 @@
 // app.js
-
-import { firebaseConfig } from "./firebaseConfig";
-
 // Character data with Firebase structure
 const characters = [
     {
