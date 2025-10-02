@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Character Voting Contest - Firebase Edition</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Firebase Connection Status -->
+        <div class="firebase-status" id="firebaseStatus">
+            <div class="status-indicator" id="statusIndicator">
+                <i class="fas fa-circle-notch fa-spin"></i>
+                <span id="statusText">Connecting to Firebase...</span>
+            </div>
+        </div>
+
+        <header class="header">
+            <h1 class="header__title">
+                <i class="fas fa-trophy header__icon"></i>
+                Character Voting Contest
+                <span class="live-badge">LIVE</span>
+            </h1>
+            <p class="header__subtitle">Vote for your favorite character and see results update in real-time!</p>
+        </header>
+
+        <div class="voting-status" id="votingStatus">
+            <div class="vote-progress">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <p class="total-votes">Total Votes: <span id="totalVotes">0</span></p>
+                <div class="sync-status" id="syncStatus">
+                    <i class="fas fa-sync-alt" id="syncIcon"></i>
+                    <span id="syncText">Synced</span>
+                </div>
+            </div>
+        </div>
+
+        <main class="characters-grid" id="charactersGrid">
+            <!-- Characters will be dynamically inserted here -->
+        </main>
+
+        <div class="results-section" id="resultsSection">
+            <h2 class="results-title">
+                <i class="fas fa-chart-bar"></i>
+                Live Results
+                <div class="live-indicator">
+                    <span class="pulse-dot"></span>
+                    LIVE
+                </div>
+            </h2>
+            <div class="rankings" id="rankings">
+                <!-- Rankings will be dynamically inserted here -->
+            </div>
+        </div>
+
+        <!-- Vote Success Modal -->
+        <div class="modal hidden" id="voteModal">
+            <div class="modal__overlay" id="modalOverlay"></div>
+            <div class="modal__content">
+                <div class="modal__icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <h3 class="modal__title">Vote Recorded!</h3>
+                <p class="modal__message">Your vote has been counted and synced with Firebase. Watch the live results update!</p>
+                <button class="btn btn--primary modal__close" id="modalClose">View Live Results</button>
+            </div>
+        </div>
+
+        <!-- Already Voted Modal -->
+        <div class="modal hidden" id="alreadyVotedModal">
+            <div class="modal__overlay" id="alreadyVotedOverlay"></div>
+            <div class="modal__content">
+                <div class="modal__icon modal__icon--warning">
+                    <i class="fas fa-exclamation-circle"></i>
+                </div>
+                <h3 class="modal__title">Already Voted!</h3>
+                <p class="modal__message">You've already cast your vote in this contest. Thanks for participating! Watch the live results continue to update.</p>
+                <button class="btn btn--secondary modal__close" id="alreadyVotedClose">View Live Results</button>
+            </div>
+        </div>
+
+        <!-- Firebase Error Modal -->
+        <div class="modal hidden" id="firebaseErrorModal">
+            <div class="modal__overlay" id="firebaseErrorOverlay"></div>
+            <div class="modal__content">
+                <div class="modal__icon modal__icon--error">
+                    <i class="fas fa-exclamation-triangle"></i>
+                </div>
+                <h3 class="modal__title">Connection Error</h3>
+                <p class="modal__message" id="errorMessage">Unable to connect to Firebase. Please check your internet connection and try again.</p>
+                <button class="btn btn--primary modal__close" id="firebaseErrorClose">Retry</button>
+            </div>
+        </div>
+
+        <!-- Confetti Container -->
+        <div class="confetti-container" id="confettiContainer"></div>
+
+        <footer class="footer">
+            <p>&copy; 2025 Firebase Character Voting Contest. Real-time results powered by Firebase!</p>
+            <div class="firebase-info">
+                <i class="fab fa-google"></i>
+                <span>Powered by Firebase Realtime Database</span>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Firebase SDK v9+ -->
+    <script type="module">
+        // Import Firebase SDK modules
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js';
+        import { getDatabase, ref, onValue, set, get, push, serverTimestamp, runTransaction, onDisconnect } from 'https://www.gstatic.com/firebasejs/9.23.0/firebase-database.js';
+        
+        // Make Firebase available globally for the main app
+        window.firebase = {
+            initializeApp,
+            getDatabase,
+            ref,
+            onValue,
+            set,
+            get,
+            push,
+            serverTimestamp,
+            runTransaction,
+            onDisconnect
+        };
+        
+        // Signal that Firebase modules are loaded
+        window.firebaseLoaded = true;
+        
+        // Trigger app initialization if it's waiting
+        if (window.initializeApp) {
+            window.initializeApp();
+        }
+    </script>
+    <script src="app.js"></script>
+</body>
+</html>
