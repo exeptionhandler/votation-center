@@ -12,17 +12,17 @@ const firebaseConfig = {
 // Character data with Firebase structure
 const characters = [
     {
-        id: "mario",
-        name: "Mario",
-        category: "Gaming Legend",
+        id: "pam",
+        name: "The hockey player",
+        category: "Donations",
         description: "The iconic plumber hero who has been saving the Mushroom Kingdom for over 35 years.",
         achievement: "Star of 200+ games across multiple generations",
         image: "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=400&h=400&fit=crop",
         votes: 0
     },
     {
-        id: "naruto",
-        name: "Naruto Uzumaki",
+        id: "perez",
+        name: "The marathonist",
         category: "Anime Hero",
         description: "The determined ninja who rose from village outcast to become the 7th Hokage.",
         achievement: "United the ninja world and achieved his dream",
@@ -30,8 +30,8 @@ const characters = [
         votes: 0
     },
     {
-        id: "deadpool",
-        name: "Deadpool",
+        id: "nicole",
+        name: "The raiser",
         category: "Movie Antihero",
         description: "The merc with a mouth who broke box office records with R-rated superhero films.",
         achievement: "Revolutionized superhero movie genre",
@@ -39,8 +39,8 @@ const characters = [
         votes: 0
     },
     {
-        id: "pikachu",
-        name: "Pikachu",
+        id: "fabio",
+        name: "Mr beast",
         category: "Pokémon Icon",
         description: "The electric mouse Pokémon who became a global phenomenon and cultural icon.",
         achievement: "25+ years as the world's most recognizable Pokémon",
