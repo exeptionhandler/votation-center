@@ -314,7 +314,7 @@ function updateResults() {
                     </div>
                 </div>
                 <div class="ranking-item__stats">
-                    <span class="ranking-item__percentage">${percentage} %</span>
+                    <span class="ranking-item__percentage"> ${percentage}%</span>
                 </div>
             </div>
         `;
