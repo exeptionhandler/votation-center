@@ -15,7 +15,7 @@ const characters = [
         name: "The marathonist", 
         category: "Donations",
         description: "He took part in a charity marathon.",
-        achievement: "Completed a full marathon for a good cause",
+        achievement: "New record in a charity marathon",
         image: "https://raw.githubusercontent.com/exeptionhandler/votation-center/refs/heads/main/assets/marathonist.jpg",
         votes: 0
     },
