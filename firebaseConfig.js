@@ -1,4 +1,4 @@
-// Firebase Configuration (Demo - replace with your own)
+// firebaseConfig.js
 export const firebaseConfig = {
     apiKey: "AIzaSyAGasSDz0fqpEU34b_Gr20F3UlcQWHvAIM",
     authDomain: "character-voting-contest.firebaseapp.com",
