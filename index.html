@@ -26,12 +26,15 @@
             <p class="header__subtitle">Vote for your favorite character and see results update in real-time!</p>
         </header>
 
+        <!-- Enhanced Voting Status with Progress Bar and Goal -->
         <div class="voting-status" id="votingStatus">
             <div class="vote-progress">
+                <p class="total-votes">
+                    <span id="totalVotes">0</span> / <span id="voteGoal">100</span> votes
+                </p>
                 <div class="progress-bar">
                     <div class="progress-fill" id="progressFill"></div>
                 </div>
-                <p class="total-votes">Total Votes: <span id="totalVotes">0</span></p>
                 <div class="sync-status" id="syncStatus">
                     <i class="fas fa-sync-alt" id="syncIcon"></i>
                     <span id="syncText">Synced</span>
@@ -62,7 +65,7 @@
                     <i class="fas fa-check-circle"></i>
                 </div>
                 <h3 class="modal__title">Thank You for Voting!</h3>
-                <p class="modal__message">Your vote has been counted and synced with Firebase. Watch the live results update!</p>
+                <p class="modal__message">Your vote has been counted and synced. Watch the live results update!</p>
                 <button class="btn btn--primary" id="closeModalBtn">View Results</button>
             </div>
         </div>
@@ -97,7 +100,7 @@
         <div class="confetti-container" id="confettiContainer"></div>
 
         <footer class="footer">
-            <p>&copy; 2025 Character Voting Contest. Real-time results powered by Firebase!</p>
+            <p>&copy; FINAL WORD</p>
             <div class="firebase-badge">
                 <i class="fas fa-fire"></i>
                 <span>Powered by Youth's tech</span>

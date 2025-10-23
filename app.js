@@ -39,6 +39,9 @@ const characters = [
     }
 ];
 
+// Configuration
+const VOTE_GOAL = 100; // Set your voting goal here
+
 // Global variables
 let db = null;
 let hasVoted = false;
@@ -115,8 +118,7 @@ function setupListeners() {
     // Listen to total votes
     db.ref('totalVotes').on('value', (snapshot) => {
         const total = snapshot.val() || 0;
-        const totalEl = document.getElementById('totalVotes');
-        if (totalEl) totalEl.textContent = total;
+        updateVotingStatus(total);
     });
 
     console.log('✅ Listeners setup complete');
@@ -153,7 +155,7 @@ async function checkVoted(characterId) {
 }
 
 // Vote for character with effects
-async function vote(characterId, event) {
+async function vote(characterId, buttonElement) {
     const alreadyVoted = await checkVoted(characterId);
     if (alreadyVoted) {
         showModal('alreadyVotedModal');
@@ -161,7 +163,7 @@ async function vote(characterId, event) {
     }
 
     // Get button and card for animations
-    const button = event.target.closest('.vote-button');
+    const button = buttonElement;
     const card = button.closest('.character-card');
 
     // Add voting animation
@@ -224,13 +226,34 @@ function createConfetti(card) {
     for (let i = 0; i < confettiCount; i++) {
         const confetti = document.createElement('div');
         confetti.className = 'confetti-piece';
-        confetti.style.left = Math.random() * 100 + ' %';
+        confetti.style.left = Math.random() * 100 + '%';
         confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
         confetti.style.animationDelay = Math.random() * 0.3 + 's';
         confetti.style.animationDuration = (Math.random() * 1 + 1.5) + 's';
 
         card.appendChild(confetti);
         setTimeout(() => confetti.remove(), 2000);
+    }
+}
+
+// Update voting status with progress bar
+function updateVotingStatus(totalVotes) {
+    const percentage = Math.min((totalVotes / VOTE_GOAL) * 100, 100);
+
+    const totalEl = document.getElementById('totalVotes');
+    const progressFill = document.getElementById('progressFill');
+    const goalEl = document.getElementById('voteGoal');
+
+    if (totalEl) totalEl.textContent = totalVotes;
+    if (goalEl) goalEl.textContent = VOTE_GOAL;
+
+    if (progressFill) {
+        progressFill.style.width = percentage + '%';
+
+        // Add celebration when goal is reached
+        if (percentage >= 100) {
+            progressFill.style.background = 'linear-gradient(90deg, #FFD700, #FFA500)';
+        }
     }
 }
 
@@ -268,7 +291,7 @@ function renderCharacters() {
                     <i class="fas fa-vote-yea"></i>
                     <span id="votes-${char.id}">${char.votes} votes</span>
                 </div>
-                <button class="vote-button" onclick="vote('${char.id}', event)" 
+                <button class="vote-button" onclick="vote('${char.id}', this)" 
                         ${hasVoted ? 'disabled' : ''}>
                     <i class="fas fa-hand-paper"></i>
                     ${hasVoted ? 'Voted' : 'Vote Now'}
@@ -289,7 +312,7 @@ function updateCharacterDisplay(characterId) {
     }
 }
 
-// Update results section
+// Update results section - IMPROVED VERSION
 function updateResults() {
     const rankingsEl = document.getElementById('rankings');
     if (!rankingsEl) return;
@@ -297,24 +320,37 @@ function updateResults() {
     const sorted = [...characters].sort((a, b) => b.votes - a.votes);
     const totalVotes = characters.reduce((sum, c) => sum + c.votes, 0);
 
-    const totalEl = document.getElementById('totalVotes');
-    if (totalEl) totalEl.textContent = totalVotes;
+    // Update voting status
+    updateVotingStatus(totalVotes);
 
     rankingsEl.innerHTML = sorted.map((char, index) => {
         const percentage = totalVotes > 0 ? (char.votes / totalVotes * 100).toFixed(1) : 0;
-        const medal = index === 0 ? '🥇' : index === 1 ? '🥈' : index === 2 ? '🥉' : (index + 1) + '.';
+        const medal = index === 0 ? '🥇' : index === 1 ? '🥈' : index === 2 ? '🥉' : `${index + 1}.`;
+
+        // Determine medal class for styling
+        const medalClass = index === 0 ? 'gold' : index === 1 ? 'silver' : index === 2 ? 'bronze' : '';
 
         return `
-            <div class="ranking-item ${index === 0 ? 'ranking-item--first' : ''}">
-                <div class="ranking-item__position">${medal}</div>
-                <div class="ranking-item__info">
-                    <span class="ranking-item__name">${char.name}</span>
-                    <div class="ranking-item__bar">
-                        <div class="ranking-item__fill" style="width: ${percentage} %"></div>
-                    </div>
+            <div class="ranking-item ${index === 0 ? 'ranking-item--first' : ''} ${medalClass}" data-rank="${index + 1}">
+                <div class="ranking-item__position">
+                    <span class="medal-icon">${medal}</span>
                 </div>
-                <div class="ranking-item__stats">
-                    <span class="ranking-item__percentage"> ${percentage}%</span>
+                <div class="ranking-item__avatar">
+                    <img src="${char.image}" alt="${char.name}" class="avatar-img">
+                </div>
+                <div class="ranking-item__info">
+                    <div class="ranking-item__header">
+                        <span class="ranking-item__name">${char.name}</span>
+                        <span class="ranking-item__votes-count">${char.votes} vote${char.votes !== 1 ? 's' : ''}</span>
+                    </div>
+                    <div class="ranking-item__bar-container">
+                        <div class="ranking-item__bar">
+                            <div class="ranking-item__fill" style="width: ${percentage}%">
+                                <span class="fill-shimmer"></span>
+                            </div>
+                        </div>
+                        <span class="ranking-item__percentage">${percentage}%</span>
+                    </div>
                 </div>
             </div>
         `;
