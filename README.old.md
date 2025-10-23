@@ -325,4 +325,5 @@ Enable Google Analytics in Firebase project for:
 - [ ] Test real-time updates across devices
 - [ ] Ready for presentation!
 
+
 **Your Firebase-powered character voting contest is ready for live audience participation!** 🏆
