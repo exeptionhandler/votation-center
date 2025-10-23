@@ -7,7 +7,7 @@ const characters = [
         category: "Donations",
         description: "The BEST hockey player in the world who gives back to the community.",
         achievement: "BIG funds raised for charity",
-        image: "https://raw.githubusercontent.com/exeptionhandler/votation-center/refs/heads/main/assets/hockeyplayer.jpg",
+        image: "https://raw.githubusercontent.com/exeptionhandler/votation-center/refs/heads/main/assets/hockeyplayer.png",
         votes: 0
     },
     {
@@ -16,7 +16,7 @@ const characters = [
         category: "Donations",
         description: "He took part in a charity marathon.",
         achievement: "New record in a charity marathon",
-        image: "https://raw.githubusercontent.com/exeptionhandler/votation-center/refs/heads/main/assets/marathonist.jpg",
+        image: "https://raw.githubusercontent.com/exeptionhandler/votation-center/refs/heads/main/assets/marathonist.png",
         votes: 0
     },
     {
@@ -25,7 +25,7 @@ const characters = [
         category: "Donations", 
         description: "Here for a good cause, raising funds for those in need.",
         achievement: "Broke records in charity fundraising",
-        image: "https://raw.githubusercontent.com/exeptionhandler/votation-center/refs/heads/main/assets/charity.jpg",
+        image: "https://raw.githubusercontent.com/exeptionhandler/votation-center/refs/heads/main/assets/charity.png",
         votes: 0
     },
     {
@@ -34,7 +34,7 @@ const characters = [
         category: "Donations",
         description: "The most generous person on the planet.",
         achievement: "2025 Philanthropist of the Year, 12,000,000 $ raised IN ONE DAY",
-        image: "https://raw.githubusercontent.com/exeptionhandler/votation-center/refs/heads/main/assets/mr-beast.jpg",
+        image: "https://raw.githubusercontent.com/exeptionhandler/votation-center/refs/heads/main/assets/mr-beast.png",
         votes: 0
     }
 ];
