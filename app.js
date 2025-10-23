@@ -3,7 +3,7 @@
 const characters = [
     {
         id: "pam",
-        name: "The hockey player",
+        name: "Pamela Salinas",
         category: "Donations",
         description: "The BEST hockey player in the world who gives back to the community.",
         achievement: "BIG funds raised for charity",
@@ -12,7 +12,7 @@ const characters = [
     },
     {
         id: "perez",
-        name: "The marathonist", 
+        name: "Alexander Munyao", 
         category: "Donations",
         description: "He took part in a charity marathon.",
         achievement: "New record in a charity marathon",
@@ -21,7 +21,7 @@ const characters = [
     },
     {
         id: "nicole",
-        name: "The raiser",
+        name: "Menna Evans",
         category: "Donations", 
         description: "Here for a good cause, raising funds for those in need.",
         achievement: "Broke records in charity fundraising",
@@ -64,7 +64,7 @@ async function initApp() {
         db = firebase.database();
 
         console.log('✅ Firebase initialized');
-        updateStatus('Connected to Firebase', true);
+        updateStatus('Connected', true);
 
         // Load votes and setup listeners
         setupListeners();
@@ -73,7 +73,7 @@ async function initApp() {
 
     } catch (error) {
         console.error('❌ Firebase failed:', error);
-        updateStatus('Demo Mode (Firebase failed)', false);
+        updateStatus('Offline (Demo)', false);
         renderAll();
     }
 }
@@ -153,7 +153,7 @@ async function checkVoted(characterId) {
 }
 
 // Vote for character with effects
-async function vote(characterId) {
+async function vote(characterId, event) {
     const alreadyVoted = await checkVoted(characterId);
     if (alreadyVoted) {
         showModal('alreadyVotedModal');
@@ -268,7 +268,7 @@ function renderCharacters() {
                     <i class="fas fa-vote-yea"></i>
                     <span id="votes-${char.id}">${char.votes} votes</span>
                 </div>
-                <button class="vote-button" onclick="vote('${char.id}')" 
+                <button class="vote-button" onclick="vote('${char.id}', event)" 
                         ${hasVoted ? 'disabled' : ''}>
                     <i class="fas fa-hand-paper"></i>
                     ${hasVoted ? 'Voted' : 'Vote Now'}
