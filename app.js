@@ -390,6 +390,34 @@ function setupModals() {
     });
 }
 
+// Add this function to app.js
+async function resetDatabase() {
+    if (!confirm('⚠️ WARNING: This will delete ALL voting data. Are you sure?')) {
+        return;
+    }
+    
+    try {
+        // Delete all votes
+        await db.ref('votes').remove();
+        // Delete total votes
+        await db.ref('totalVotes').set(0);
+        
+        console.log('✅ Database reset successfully');
+        alert('Database has been reset!');
+        
+        // Reset local data
+        characters.forEach(char => char.votes = 0);
+        renderAll();
+        
+    } catch (error) {
+        console.error('❌ Reset failed:', error);
+        alert('Failed to reset database: ' + error.message);
+    }
+}
+
+// Make it accessible from browser console
+window.resetDatabase = resetDatabase;
+
 // Initialize when DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
     console.log('🚀 Starting Character Voting Contest...');
